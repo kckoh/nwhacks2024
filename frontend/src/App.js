@@ -11,8 +11,9 @@ import { useState } from 'react';
 
 const RectangleBox = ({ title, centerTitle = false, image }) => (
   <div
+    className="rectangle-box"
     style={{
-      width: '100%',
+      width: '80%',
       height: '120px',
       backgroundColor: '#5297eb',
       borderRadius: '10px',
@@ -20,6 +21,7 @@ const RectangleBox = ({ title, centerTitle = false, image }) => (
       flexDirection: 'column',
       alignItems: centerTitle ? 'center' : 'flex-start',
       boxSizing: 'border-box',
+      fontStyle : 'sans-serif',
     }}
   >
     {image && <img src={image} alt="Warning" style={{ width: '50px', height: '50px' }} />}
@@ -88,16 +90,16 @@ function App() {
 
         {/* right */}
         <Col md={6}>
-        <Row style={{fontFamily: 'Poppins',fontWeight: 800,fontSize: '25px',lineHeight: '38px',color: '#0F3CB0',}}>
+        <Row style={{fontFamily: 'sans-serif',fontWeight: 800,fontSize: '25px',lineHeight: '38px',color: '#0F3CB0',}}>
           Health Hazards Warnings 
         </Row>
         <Row>
-        <RectangleBox className="animated-container"/>
+        <RectangleBox/>
         </Row>
         
          
         <Row>
-          <Row style={{fontFamily: 'Poppins',fontWeight: 800,fontSize: '25px',lineHeight: '38px',color: '#0F3CB0',}}>
+          <Row style={{fontFamily: 'sans-serif',fontWeight: 800,fontSize: '25px',lineHeight: '38px',color: '#0F3CB0',}}>
             Primary Pollutant
           </Row>
           <RectangleBox title="Primary Pollutant" centerTitle={true} />
@@ -110,7 +112,7 @@ function App() {
 
   return (
     < >
-    <h1 style={{color: '#0F3CB0', fontFamily: 'Poppins', fontSize: '45px',fontWeight: 'bold' , margin : '20px'}}>
+    <h1 style={{color: '#0F3CB0', fontFamily: 'sans-serif', fontSize: '45px',fontWeight: 'bold' , margin : '20px'}}>
         Environmental Pollution Data for{' '}
         <span style={{ color: 'grey' }}>Vancouver, BC</span>
       </h1>
