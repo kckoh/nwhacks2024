@@ -100,7 +100,7 @@ function App() {
       </div>
     );
     return (
-      <Container  style={{ backgroundColor: '#9BB1E9', padding: '20px' }}>
+      <Container  style={{ backgroundColor: '#9BB1E9', fontFamily:'Poppins', padding: '20px' }}>
 
         <Row>
           {/* left column */}
@@ -116,7 +116,7 @@ function App() {
 
         {/* right */}
         <Col md={6}>
-        <Row style={{fontFamily: 'Poppins',fontWeight: 800,fontSize: '25px',lineHeight: '38px',color: '#0F3CB0',}}>
+        <Row style={{fontWeight: 800,fontSize: '25px',lineHeight: '38px',color: '#0F3CB0',}}>
           Air Quality 
         </Row>
         <Row>
@@ -126,7 +126,7 @@ function App() {
         
          
         <Row>
-          <Row style={{fontFamily: 'Poppins',fontWeight: 800,fontSize: '25px',lineHeight: '38px',color: '#0F3CB0',}}>
+          <Row style={{fontWeight: 800,fontSize: '25px',lineHeight: '38px',color: '#0F3CB0',}}>
             Health Information and Suggested Actions
           </Row>
 
@@ -143,8 +143,8 @@ function App() {
 
   return (
     < >
-    <h1 style={{color: '#0F3CB0', fontFamily: 'Poppins', fontSize: '45px',fontWeight: 'bold' , margin : '20px'}}>
-      EcoWatch: Pollution Tracker for{' '}
+    <h1 style={{fontFamily:'',color: '#0F3CB0', fontSize: '45px',fontWeight: 'bold' , margin : '20px'}}>
+      EcoWatch: Pollution Tracker for{ ' '}
         <span style={{ color: 'white' }}>Vancouver, BC</span>
       </h1>
       <Body />

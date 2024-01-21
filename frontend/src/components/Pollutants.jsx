@@ -59,6 +59,7 @@ const PollutantComponent = () => {
               <p key={pollutant}>{`${pollutant}: ${pollutantData[pollutant]}`}</p>
             ))
           } */}
+          {console.log("summary", summary)}
           {summary && <p>{summary}</p>}
         </div>
       )}
