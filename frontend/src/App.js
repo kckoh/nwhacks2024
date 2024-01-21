@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import UserLocation from '../src/components/UserLocation'
+import AirQualityComponent from '../src/components/AQI'
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
