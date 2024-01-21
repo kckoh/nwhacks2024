@@ -13,6 +13,7 @@ import UserLocation from '../src/components/UserLocation'
 import AirQualityComponent from '../src/components/AQI'
 import Breezo from '../src/components/Breezo'
 import PollutantComponent from '../src/components/Pollutants'
+import Map from '../src/components/Map'
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
@@ -102,7 +103,7 @@ function App() {
         <Row>
           {/* left column */}
           <Col md={6}>
-            {map}
+            <Map latitude={latitude} longitude={longitude} />
             <Row>
              <Col><LegendBox pos="left" color="#8DD75F" text="Low" /></Col> 
              <Col><LegendBox pos="center" color="#D8E177" text="Medium" /></Col>
