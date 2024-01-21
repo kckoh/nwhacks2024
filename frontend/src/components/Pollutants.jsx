@@ -5,6 +5,7 @@ const PollutantComponent = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [pollutantData, setPollutantData] = useState(null);
+  const[summary, setSummary] = useState(null);
 
   useEffect(() => {
     const getPollutantData = async (latitude, longitude) => {
@@ -13,7 +14,11 @@ const PollutantComponent = () => {
         const apiUrl = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
 
         const response = await axios.get(apiUrl);
+        const apiResponse = await axios.post('http://127.0.0.1:8000/summary', { response });
+        console.log("summary response", apiResponse);
         setPollutantData(response.data.list[0].components);
+        setSummary(apiResponse.data.summary);
+
         setLoading(false);
       } catch (error) {
         setError('Error fetching pollutant data.');
@@ -48,15 +53,13 @@ const PollutantComponent = () => {
       {error && <p>{error}</p>}
       {pollutantData !== null && (
         <div>
-          <h2>Pollutant Percentages</h2>
-          <p>{`CO: ${pollutantData.co}%`}</p>
-          <p>{`NO: ${pollutantData.no}%`}</p>
-          <p>{`NO2: ${pollutantData.no2}%`}</p>
-          <p>{`O3: ${pollutantData.o3}%`}</p>
-          <p>{`SO2: ${pollutantData.so2}%`}</p>
-          <p>{`PM2.5: ${pollutantData.pm2_5}%`}</p>
-          <p>{`PM10: ${pollutantData.pm10}%`}</p>
-          <p>{`NH3: ${pollutantData.nh3}%`}</p>
+          <h4>Activity Recommendations</h4>
+          {/* {
+            Object.keys(pollutantData).map((pollutant) => (
+              <p key={pollutant}>{`${pollutant}: ${pollutantData[pollutant]}`}</p>
+            ))
+          } */}
+          {summary && <p>{summary}</p>}
         </div>
       )}
     </div>

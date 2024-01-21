@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Breezo = () => {
+const AirQualityLevel = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [airQuality, setAirQuality] = useState(null);
@@ -13,9 +13,15 @@ const Breezo = () => {
         const apiUrl = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
 
         const response = await axios.get(apiUrl);
+        console.log("breezo"  , response.data);
+
         const aqi = response.data.list[0].main.aqi;
         setAirQuality(aqi);
         setLoading(false);
+        // send the aqi value to the server
+        const response2 = await axios.post('http://127.0.0.1:8000/air_quality', { response });
+        console.log(response2.data);
+        
       } catch (error) {
         setError('Error fetching air quality data.');
         setLoading(false);
@@ -63,7 +69,7 @@ const Breezo = () => {
     <div>
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
-      {airQuality !== null && (
+      {airQuality !==null  && (
         <div>
           <p>Quality Level: {getQualityLevel(airQuality)}</p>
           {/* You can add more details based on the AQI ranges */}
@@ -73,4 +79,4 @@ const Breezo = () => {
   );
 };
 
-export default Breezo;
+export default AirQualityLevel;

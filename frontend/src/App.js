@@ -11,9 +11,10 @@ import { useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import UserLocation from '../src/components/UserLocation'
 import AirQualityComponent from '../src/components/AQI'
-import Breezo from '../src/components/Breezo'
+import AirQualityLevel from './components/AirQualityLevel'
 import PollutantComponent from '../src/components/Pollutants'
 import Map from '../src/components/Map'
+import {FiAlertTriangle } from 'react-icons/fi'
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
@@ -22,18 +23,19 @@ const RectangleBox = ({ title, title2=null, centerTitle = false, image }) => (
     style={{
       width: '100%',
       height: '100%',
-      backgroundColor: '#5297eb',
+      backgroundColor: 'darkblue',
       borderRadius: '10px',
       display: 'flex',
+      color: 'white',
       flexDirection: 'column',
       alignItems: centerTitle ? 'center' : 'flex-start',
       boxSizing: 'border-box',
     }}
   >
-    {image && <img src={image} alt="Warning" style={{ width: '50px', height: '50px' }} />}
+    <FiAlertTriangle style ={{ height: '40px', width: '40px'}}/>
     <h5
       style={{
-        color: 'blue',
+        color: 'white',
         textAlign: centerTitle ? 'center' : 'left',
       }}
     >
@@ -105,9 +107,9 @@ function App() {
           <Col md={6}>
             <Map latitude={latitude} longitude={longitude} />
             <Row>
-             <Col><LegendBox pos="left" color="#8DD75F" text="Low" /></Col> 
+             {/* <Col><LegendBox pos="left" color="#8DD75F" text="Low" /></Col> 
              <Col><LegendBox pos="center" color="#D8E177" text="Medium" /></Col>
-            <Col><LegendBox pos="right" color="#B00F0F" text="Severe" /></Col> 
+            <Col><LegendBox pos="right" color="#B00F0F" text="Severe" /></Col>  */}
             </Row>
           </Col>
         
@@ -115,17 +117,17 @@ function App() {
         {/* right */}
         <Col md={6}>
         <Row style={{fontFamily: 'Poppins',fontWeight: 800,fontSize: '25px',lineHeight: '38px',color: '#0F3CB0',}}>
-          Health Hazards Warnings 
+          Air Quality 
         </Row>
         <Row>
-        <RectangleBox className="animated-container" title={<Breezo />} title2={<AirQualityComponent />}>
+        <RectangleBox className="animated-container" title={<AirQualityLevel />} title2={<AirQualityComponent />}>
         </ RectangleBox>
         </Row>
         
          
         <Row>
           <Row style={{fontFamily: 'Poppins',fontWeight: 800,fontSize: '25px',lineHeight: '38px',color: '#0F3CB0',}}>
-            Primary Pollutant
+            Health Information and Suggested Actions
           </Row>
 
           <RectangleBox centerTitle={true} title={<PollutantComponent />}  >
@@ -142,8 +144,8 @@ function App() {
   return (
     < >
     <h1 style={{color: '#0F3CB0', fontFamily: 'Poppins', fontSize: '45px',fontWeight: 'bold' , margin : '20px'}}>
-        Environmental Pollution Data for{' '}
-        <span style={{ color: 'grey' }}>Vancouver, BC</span>
+      EcoWatch: Pollution Tracker for{' '}
+        <span style={{ color: 'white' }}>Vancouver, BC</span>
       </h1>
       <Body />
     </ >

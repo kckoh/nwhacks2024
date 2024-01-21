@@ -13,6 +13,7 @@ const AirQualityComponent = () => {
         const apiUrl = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
 
         const response = await axios.get(apiUrl);
+        console.log(response.data);
         setAirQuality(response.data.list[0].main.aqi);
         setLoading(false);
       } catch (error) {
