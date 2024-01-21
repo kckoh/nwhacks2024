@@ -6,21 +6,20 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useEffect } from 'react';
 import { useState } from 'react';
-
-
+import GoogleMapReact from 'google-map-react';
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 
 function App() {
-  const [location, setLocation] = useState(null);
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
 
   useEffect(() => {
     window.navigator.geolocation.getCurrentPosition(
       (position) => {
-
-        setLocation({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        });
+        console.log(position);
+        setLatitude(position.coords.latitude);
+        setLongitude(position.coords.longitude);
       },
       (error) => {
         console.error(error);
@@ -29,6 +28,22 @@ function App() {
   }, []);
 
   function Body() {
+    console.log(process.env.REACT_APP_API_GOOGLE_KEY)
+    let map = (
+      <div style={{ height: '100vh', width: '100%' }}>
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: process.env.REACT_APP_API_GOOGLE_KEY }} // Use your env variable
+          defaultCenter={{ lat: latitude, lng: longitude }}
+          defaultZoom={11}
+        >
+          <AnyReactComponent
+            lat={latitude}
+            lng={longitude}
+            text=""
+          />
+        </GoogleMapReact>
+      </div>
+    );
     return (
       <Container>
 
@@ -36,7 +51,7 @@ function App() {
       <Row>
         {/* left */}
         <Col md={6}>
-          map here
+          {map}
         </Col>
 
         {/* right */}
