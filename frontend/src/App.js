@@ -9,11 +9,18 @@ import Image from 'react-bootstrap/Image';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import GoogleMapReact from 'google-map-react';
-const AnyReactComponent = ({ text }) => <div>{text}</div>;const RectangleBox = ({ title, centerTitle = false, image }) => (
+import UserLocation from '../src/components/UserLocation'
+import AirQualityComponent from '../src/components/AQI'
+import Breezo from '../src/components/Breezo'
+import PollutantComponent from '../src/components/Pollutants'
+
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
+
+const RectangleBox = ({ title, title2=null, centerTitle = false, image }) => (
   <div
     style={{
       width: '100%',
-      height: '120px',
+      height: '100%',
       backgroundColor: '#5297eb',
       borderRadius: '10px',
       display: 'flex',
@@ -30,6 +37,8 @@ const AnyReactComponent = ({ text }) => <div>{text}</div>;const RectangleBox = (
       }}
     >
       {title}
+      {title2}
+      
     </h5>
   </div>
 );
@@ -71,7 +80,7 @@ function App() {
   }, []);
 
   function Body() {
-    console.log(process.env.REACT_APP_API_GOOGLE_KEY)
+
     let map = (
       <div style={{ height: '500px', width: '500px' }} className='mb-3'>
         <GoogleMapReact
@@ -108,7 +117,8 @@ function App() {
           Health Hazards Warnings 
         </Row>
         <Row>
-        <RectangleBox className="animated-container"/>
+        <RectangleBox className="animated-container" title={<Breezo />} title2={<AirQualityComponent />}>
+        </ RectangleBox>
         </Row>
         
          
@@ -116,7 +126,11 @@ function App() {
           <Row style={{fontFamily: 'Poppins',fontWeight: 800,fontSize: '25px',lineHeight: '38px',color: '#0F3CB0',}}>
             Primary Pollutant
           </Row>
-          <RectangleBox title="Primary Pollutant" centerTitle={true} />
+
+          <RectangleBox centerTitle={true} title={<PollutantComponent />}  >
+            
+          </RectangleBox>
+         
         </Row>
         </Col>
       </Row>
